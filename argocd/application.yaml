@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: anand-test
+spec:
+  destination:
+    name: ''
+    namespace: anand-app
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: argocd
+    repoURL: 'https://github.com/anandgupta0404/argoapp.git'
+    targetRevision: HEAD
+    plugin:
+      name: argocd-vault-plugin
+      env:
+        - name: AVP_K8S_ROLE
+          value: vplugin
+        - name: AVP_TYPE
+          value: vault
+        - name: AVP_VAULT_ADDR
+          value: 'http://172.30.189.194:8200'
+        - name: AVP_AUTH_TYPE
+          value: k8s
+  sources: []
+  project: default
