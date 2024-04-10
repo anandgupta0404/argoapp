@@ -14,13 +14,15 @@ spec:
     plugin:
       name: argocd-vault-plugin
       env:
-        - name: AVP_K8S_ROLE
-          value: vplugin
         - name: AVP_TYPE
           value: vault
-        - name: AVP_VAULT_ADDR
+        - name: VAULT_ADDR
           value: 'http://10.10.1.129:32533/'
         - name: AVP_AUTH_TYPE
-          value: k8s
+          value: userpass
+        - name: AVP_USERNAME
+          value: userweb
+        - name: AVP_PASSWORD
+          vaule: root
   sources: []
   project: default
